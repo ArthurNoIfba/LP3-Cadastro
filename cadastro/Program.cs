@@ -1,3 +1,5 @@
+using cadastro.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseUrls("http://localhost:8000");
@@ -25,23 +27,15 @@ while(i < 5) {
 });
 
 app.MapGet("/objeto", () => {
- Funcionario f = new Funcionario();
+    
+    Funcionario funcionario = new Funcionario();
 
-    f.SetNome(nome);
-    f.SetIdade(idade);
-    f.SetCargo(cargo);
-    f.SetDepartamento(departamento);
+    funcionario.Nome = "Arthur";
 
-    // Adiciona no vetor
-    funcionarios[totalFuncionarios] = f;
-    totalFuncionarios++;
+    Console.WriteLine("Nome: " + funcionario.Nome);
 
-    return Results.Ok(new
-    {
-        nome = f.GetNome(),
-        idade = f.GetIdade(),
-        cargo = f.GetCargo(),
-        departamento = f.GetDepartamento()
+    return Results.Ok(new {
+       nome = funcionario.Nome
     });
 });
 
