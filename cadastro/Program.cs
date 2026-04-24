@@ -39,4 +39,21 @@ app.MapGet("/objeto", () => {
     });
 });
 
+app.MapGet("/vetor", () => {
+    
+    int[] numeros = new int[100];
+
+    numeros[0] = 15;
+    numeros[1] = 53;
+    numeros[2] = 34;
+
+    Console.WriteLine("Valor: " + numeros[0]);
+    Console.WriteLine("Valor: " + numeros[1]);
+    Console.WriteLine("Valor: " + numeros[2]);
+
+    return Results.Ok(new {
+        numeros
+    });
+});
+
 app.Run();
