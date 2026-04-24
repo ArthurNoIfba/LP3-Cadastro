@@ -6,6 +6,9 @@ builder.WebHost.UseUrls("http://localhost:8000");
 
 var app = builder.Build();
 
+Funcionario[] funcionarios = new Funcionario[100];
+int contador = 0;
+
 app.MapGet("/", () => {
     return  new { mensagem= "API em execução"};
 });
@@ -53,6 +56,21 @@ app.MapGet("/vetor", () => {
 
     return Results.Ok(new {
         numeros
+    });
+});
+
+app.MapGet("/funcionario/cadastrar/{nome}", (string nome) => {
+    
+    Funcionario funcionario = new Funcionario();
+    
+    funcionario.Nome = nome;
+
+    funcionarios[contador] = funcionario;
+    contador++;
+
+    //MODIFICAR NA PRÓXIMA AULA
+    return Results.Ok(new {
+        funcionarios
     });
 });
 
